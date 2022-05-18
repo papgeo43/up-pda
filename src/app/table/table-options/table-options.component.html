@@ -1,0 +1,17 @@
+<h2 mat-dialog-title style="text-align: center; color: #3F51B5;">Table: {{data.id}}</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Order</mat-label>
+        <mat-select (selectionChange)="changeClient($event.value)" #matRef>
+            <mat-option *ngFor="let option of dropDownOptions" [value]="option">{{option}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+        <p *ngFor="let item of selectedItems">{{item}}</p> 
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close [disabled]="!changeOption" (click)="saveOrder()">Save</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true">Close</button>
+
+</mat-dialog-actions>

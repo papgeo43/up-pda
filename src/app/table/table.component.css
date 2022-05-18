@@ -1,0 +1,13 @@
+.table{
+    background-color: green;
+    padding: 10px;
+    border-radius: 50%;
+    outline: none;
+}
+span{
+    color:  white;
+}
+
+button{
+    margin: 5px
+}
