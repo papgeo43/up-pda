@@ -17,6 +17,7 @@ console.log(this.table, "table")
 
   openDialog() {
     this.dialog.open(TableOptionsComponent, {
+      minWidth: "478px",
       data: {
         id: this.table
       }

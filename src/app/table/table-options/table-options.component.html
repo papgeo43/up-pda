@@ -1,17 +1,32 @@
 <h2 mat-dialog-title style="text-align: center; color: #3F51B5;">Table: {{data.id}}</h2>
 <mat-dialog-content>
-    <mat-form-field appearance="fill">
+    <mat-form-field class="dropdown" appearance="fill">
         <mat-label>Order</mat-label>
         <mat-select (selectionChange)="changeClient($event.value)" #matRef>
-            <mat-option *ngFor="let option of dropDownOptions" [value]="option">{{option}}</mat-option>
+            <mat-option *ngFor="let option of dropDownOptions" [value]="option.item">{{option.item}} - {{option.price}}€</mat-option>
         </mat-select>
     </mat-form-field>
-        <p *ngFor="let item of selectedItems">{{item}}</p> 
+    <div *ngIf="selectedItems.length"> 
+        <div class="orders" *ngFor="let order of selectedItems; let i = index">
+            <h3 #ref>{{order.item}}</h3> 
+            <div class="arrows">
+                <button class="increase-btn" mat-raised-button color="primary" (click)="decreaseItemQuantity(order)"><span class="material-icons">arrow_circle_down</span></button>
+                <span>X{{order.itemQuantity}}</span>
+                <button class="decrease-btn" (click)="increaseItemQuantity(order)"mat-raised-button color="primary"><span class="material-icons">arrow_circle_up</span></button>
+                <button mat-icon-button  style="margin: 10px;" (click)="delete(order.item)">
+                    <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+                <h3>{{order.price}}€</h3> 
+        </div>
+    </div>
     
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions class="btns">
+    <button *ngIf="selectedItems.length" mat-button color="primary" (click)="payTable()"  >Εξοφληση {{total}}€</button>
     <button mat-raised-button color="primary" mat-dialog-close [disabled]="!changeOption" (click)="saveOrder()">Save</button>
     <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
     <button mat-button [mat-dialog-close]="true">Close</button>
+
 
 </mat-dialog-actions>

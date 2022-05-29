@@ -1,0 +1,28 @@
+.orders{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-content: center;
+    place-items: center;
+    
+}
+.dropdown{
+    display: flex;
+    justify-content: center;
+    min-width: 278px;
+}
+
+.btns{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.arrows{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.increase-btn, .decrease-btn{
+    line-height: 31px;
+    margin: 7px;
+}
