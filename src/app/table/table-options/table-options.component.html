@@ -1,7 +1,7 @@
 <h2 mat-dialog-title style="text-align: center; color: #3F51B5;">Table: {{data.id}}</h2>
 <mat-dialog-content>
     <mat-form-field class="dropdown" appearance="fill">
-        <mat-label>Order</mat-label>
+        <mat-label>Παραγγελία</mat-label>
         <mat-select (selectionChange)="changeClient($event.value)" #matRef>
             <mat-option *ngFor="let option of dropDownOptions" [value]="option.item">{{option.item}} - {{option.price}}€</mat-option>
         </mat-select>
@@ -13,7 +13,7 @@
                 <button class="increase-btn" mat-raised-button color="primary" (click)="decreaseItemQuantity(order)"><span class="material-icons">arrow_circle_down</span></button>
                 <span>X{{order.itemQuantity}}</span>
                 <button class="decrease-btn" (click)="increaseItemQuantity(order)"mat-raised-button color="primary"><span class="material-icons">arrow_circle_up</span></button>
-                <button mat-icon-button  style="margin: 10px;" (click)="delete(order.item)">
+                <button mat-icon-button  style="margin: 10px;" (click)="delete(order.item, selectedItems)">
                     <mat-icon>delete_forever</mat-icon>
               </button>
             </div>

@@ -11,7 +11,7 @@ export interface Order {
   item: string,
   price: number,
   itemQuantity: number
-}
+} 
 
 export const notification = {
   success: 'Η παραγγελία αποθηκεύτηκε.',
@@ -28,7 +28,7 @@ export const notification = {
   styleUrls: ['./table-options.component.css']
 })
 export class TableOptionsComponent implements OnInit {
-  selectedItems: any[] = [];
+  selectedItems: Order[] = [];
   hasDataFromRequest: boolean;
   changeOption: boolean;
   isNotSaved: boolean;
@@ -58,13 +58,14 @@ export class TableOptionsComponent implements OnInit {
 
 
   changeClient(data: any) {
-    const findObj = this.dropDownOptions.find(obj => obj.item === data);
+    const findObj = menu.find(obj => obj.item === data);
     if (findObj) {
-      this.selectedItems.push(findObj);
+      const copyObj = {...findObj}
+      this.selectedItems.push(copyObj);
+      this.changeOption = true;
     }
     this.calculateTotal();
     this.matRef.options.forEach((data: MatOption) => data.deselect());
-    this.changeOption = true;
   }
 
   saveOrder() {
@@ -93,6 +94,7 @@ export class TableOptionsComponent implements OnInit {
   }
 
   increaseItemQuantity(order: Order) {
+    debugger
     const priceToIncrease = menu.find((itemName) => itemName.item === order.item);
     priceToIncrease?.price ? order.price = order.price + priceToIncrease?.price : null;
     order.itemQuantity = order.itemQuantity + 1;
@@ -130,8 +132,8 @@ export class TableOptionsComponent implements OnInit {
 
   }
 
-  delete(item: string) {
-    this.selectedItems.splice(this.selectedItems.findIndex(order => order.item === item), 1);
+  delete(item: string, itemArray: Order[]) {
+    itemArray.splice(itemArray.findIndex(order => order.item === item), 1);
     this.calculateTotal();
     this.changeOption = true;
   }
