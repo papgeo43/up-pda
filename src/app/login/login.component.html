@@ -1,0 +1,10 @@
+<div class="login-page">
+  <div class="form">
+    
+    <form class="login-form">
+      <input type="text" placeholder="email"  #email/>
+      <input type="password" placeholder="password" #password/>
+      <button (click)="loginService.signin(email.value, password.value)">login</button>
+    </form>
+  </div>
+</div>

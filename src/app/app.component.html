@@ -1,3 +1,12 @@
-<div class="container">  
-  <app-table *ngFor="let table of tables" [table]="table"></app-table>
+
+<div *ngIf="!loginSvc.isLoggedIn;else isLoggedIn">
+  <app-login></app-login>
 </div>
+<ng-template #isLoggedIn>
+  <button (click)="loginSvc.logout()">
+    Αποσυνδεση
+  </button>
+  <div class="container">  
+    <app-table *ngFor="let table of tables" [table]="table"></app-table>
+  </div>
+</ng-template>

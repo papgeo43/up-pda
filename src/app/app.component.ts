@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {tap} from 'rxjs/operators'
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ export class AppComponent implements OnInit{
   endPointIds: any[] = [];
  
   tables = [1,2,3,4,5,6,7,8,9]
- constructor(private http: HttpClient) {
+ constructor(public loginSvc: LoginService) {
  }
   ngOnInit(){
+    this.loginSvc.isUserSignedIn()
     // this.http.get('https://up-in-smoke-waiter-default-rtdb.firebaseio.com/table.json').pipe(
     //   tap(x=>{
     //     this.endPointIds = [...Object.keys(x)];

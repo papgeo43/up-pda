@@ -33,8 +33,8 @@ export class TableOptionsComponent implements OnInit {
   changeOption: boolean;
   isNotSaved: boolean;
   total: number;
-  @Output() totalEvent = new EventEmitter();
-
+  @Output() bookTitleCreated = new EventEmitter<{ table: string, totalValue: string }>();
+  
   @ViewChild('matRef') matRef: MatSelect;
   dropDownOptions = menu.map(x => {
     return { ...x }
@@ -43,7 +43,7 @@ export class TableOptionsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get(`https://up-in-smoke-waiter-default-rtdb.firebaseio.com/table-${this.data.id}.json`).pipe(
+    this.http.get(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.data.id}.json`).pipe(
       tap((hasData) => {
         if (hasData) {
           this.hasDataFromRequest = true;
@@ -71,7 +71,7 @@ export class TableOptionsComponent implements OnInit {
   saveOrder() {
     if (this.changeOption) {
       if (this.hasDataFromRequest) {
-        this.http.put(`https://up-in-smoke-waiter-default-rtdb.firebaseio.com/table-${this.data.id}.json`, this.selectedItems)
+        this.http.put(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.data.id}.json`, this.selectedItems)
          .subscribe( result => {
           // success
           this.showNotification(notification.success, notification.closeAction, notification.backgroundSuccess);
@@ -81,7 +81,7 @@ export class TableOptionsComponent implements OnInit {
           this.showNotification(notification.error, notification.closeAction, notification.backgroundError);
         })
       } else {
-        this.http.post(`https://up-in-smoke-waiter-default-rtdb.firebaseio.com/table-${this.data.id}.json`, this.selectedItems).subscribe( result => {
+        this.http.post(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.data.id}.json`, this.selectedItems).subscribe( result => {
           // success
           this.showNotification(notification.success, notification.closeAction, notification.backgroundSuccess);
         },
