@@ -8,16 +8,20 @@
     </mat-form-field>
     <div *ngIf="selectedItems.length"> 
         <div class="orders" *ngFor="let order of selectedItems; let i = index">
-            <h3 #ref>{{order.item}}</h3> 
-            <div class="arrows">
+            <div class="flex-item">
+                <h3 class="item" #ref>{{order.item}}</h3> 
+            </div>
+            <div class="flex-item big">
                 <button class="increase-btn" mat-raised-button color="primary" (click)="decreaseItemQuantity(order)"><span class="material-icons">arrow_circle_down</span></button>
                 <span>X{{order.itemQuantity}}</span>
                 <button class="decrease-btn" (click)="increaseItemQuantity(order)"mat-raised-button color="primary"><span class="material-icons">arrow_circle_up</span></button>
-                <button mat-icon-button  style="margin: 10px;" (click)="delete(order.item, selectedItems)">
+                <button mat-icon-button  (click)="delete(order.item, selectedItems)">
                     <mat-icon>delete_forever</mat-icon>
               </button>
             </div>
-                <h3>{{order.price}}€</h3> 
+            <div class="flex-item">
+                <h3 class="price">{{order.price}}€</h3> 
+            </div>
         </div>
     </div>
     

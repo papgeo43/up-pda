@@ -120,7 +120,6 @@ export class TableOptionsComponent implements OnInit {
   }
   
   passTotalToParent(){
-    debugger
     this.passTotal.calculateTablePrice.next({table: this.data.id, totalValue: this.total })
   }
 

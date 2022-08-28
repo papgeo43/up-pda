@@ -1,10 +1,4 @@
-.orders{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    place-content: center;
-    place-items: center;
-    
-}
+
 .dropdown{
     display: flex;
     justify-content: center;
@@ -17,6 +11,7 @@
 }
 
 .arrows{
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,3 +21,23 @@
     line-height: 31px;
     margin: 7px;
 }
+.orders{
+    display: flex;
+    width:408px;
+    margin: 0 auto;   
+}
+.flex-item {
+    display: flex;
+    width: 120px;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .flex-item.big {
+    display: flex;
+    width: 173px;
+    justify-content: center;
+    align-items: center;
+  }
+  

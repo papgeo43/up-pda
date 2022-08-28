@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(TableOptionsComponent, {
-      minWidth: "478px",
+      minWidth: "408px",
       data: {
         id: this.table
       }
