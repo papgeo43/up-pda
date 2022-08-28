@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   title = 'up-in-smoke-pda-app';
   endPointIds: any[] = [];
   
-  tables = ['E1','E2','E3','E4','E5','E6','E7','E8','E9', 'E10',1,2,3,4,5,6,7,8,9,10,11,12,13]
+  tables = ['E1','E2','E3','E4','E5','E6','E7','E8','E9', 'E10',2,3,4,5,6,7,8,8.5,9,10,11,12,13]
  constructor(public loginSvc: LoginService, public passTotalService: PassTotalService) {
  }
   ngOnInit(){
