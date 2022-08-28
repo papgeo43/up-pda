@@ -5,6 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PassTotalService {
-  tableTotal = new Subject()
+  calculateTablePrice = new Subject<{ table: number, totalValue: number }>();
+
   constructor() { }
 }

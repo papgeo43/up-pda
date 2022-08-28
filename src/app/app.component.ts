@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {tap} from 'rxjs/operators'
 import { LoginService } from './login.service';
+import { PassTotalService } from './pass-total.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ import { LoginService } from './login.service';
 export class AppComponent implements OnInit{
   title = 'up-in-smoke-pda-app';
   endPointIds: any[] = [];
- 
+  
   tables = [1,2,3,4,5,6,7,8,9]
- constructor(public loginSvc: LoginService) {
+ constructor(public loginSvc: LoginService, public passTotalService: PassTotalService) {
  }
   ngOnInit(){
     this.loginSvc.isUserSignedIn()

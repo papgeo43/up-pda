@@ -9,7 +9,8 @@ export class LoginService {
   constructor(private fireBaseAuth: AngularFireAuth) { }
 
   async signin(email:string, password:string){
-   const user = await this.fireBaseAuth.signInWithEmailAndPassword(email, password)
+   const user = await this.fireBaseAuth.signInWithEmailAndPassword(email, password);
+   debugger
         this.isLoggedIn = true;
         localStorage.setItem('user', JSON.stringify(user.user));
       

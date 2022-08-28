@@ -1,6 +1,6 @@
 <section>
-    <!-- <button class="table" >
-        <span>{{table}}</span>
-    </button> -->
+    <div [ngStyle]="{'border': price ? '1px solid black' : 'none'}">
     <button mat-raised-button color="primary" (click)="openDialog()">{{table}}</button>
+        <p *ngIf="price > 0" style="text-align: center;">{{price}}€</p>
+    </div>
 </section>

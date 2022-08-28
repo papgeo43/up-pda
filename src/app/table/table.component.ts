@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog'; import { TableOptionsComponent } from './table-options/table-options.component';
+import { Component, Inject, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'; 
+import { TableOptionsComponent } from './table-options/table-options.component';
+import { PassTotalService } from '../pass-total.service';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-table',
@@ -9,10 +12,18 @@ import { MatDialog } from '@angular/material/dialog'; import { TableOptionsCompo
 })
 export class TableComponent implements OnInit {
   @Input() table: any
-  constructor(private http: HttpClient, public dialog: MatDialog) { }
+  price = 0;
+  constructor(private http: HttpClient, public passTotalService: PassTotalService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-console.log(this.table, "table")
+    this.http.get(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.table}.json`).pipe(
+      tap((hasData) => {
+        if(hasData){
+          let merged = [].concat.apply([], (<any>Object).values(hasData));
+          this.price = merged.reduce((x, item:any) => x + item.price, 0);
+        }
+      })
+    ).subscribe();
   }
 
   openDialog() {
@@ -22,8 +33,15 @@ console.log(this.table, "table")
         id: this.table
       }
     }
-    );
+    )
+    .afterClosed().pipe(
+      switchMap(()=> this.passTotalService.calculateTablePrice),
+      tap(x=> {
+        if(x.table === this.table){
+          this.price = x.totalValue
+        }
+      })).subscribe();
+    
   }
-
 }
 
