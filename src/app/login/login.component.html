@@ -6,5 +6,6 @@
       <input type="password" placeholder="password" #password/>
       <button (click)="loginService.signin(email.value, password.value)">login</button>
     </form>
+    <p *ngIf="loginService.errorMessage" style="color: red;">{{loginService.errorMessage}}</p>
   </div>
 </div>

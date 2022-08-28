@@ -6,8 +6,11 @@
     padding: 25px;
 }
 
-button{
-    margin: 5px;
+.btn{
+    background: darkgrey;
     outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
 
 }

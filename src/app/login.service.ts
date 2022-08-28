@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { from, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   isLoggedIn = false;
+  errorMessage =' '
   constructor(private fireBaseAuth: AngularFireAuth) { }
 
-  async signin(email:string, password:string){
-   const user = await this.fireBaseAuth.signInWithEmailAndPassword(email, password);
-   debugger
-        this.isLoggedIn = true;
-        localStorage.setItem('user', JSON.stringify(user.user));
-      
+  signin(email:string, password:string){
+   const user$ =  from(this.fireBaseAuth.signInWithEmailAndPassword(email, password)).pipe(
+     tap((user)=>{
+      this.isLoggedIn = true;
+      localStorage.setItem('user', JSON.stringify(user.user));
+     }),
+     catchError(()=>{
+       this.errorMessage = 'Λάθος μειλ ή κωδικός.'
+       return of(null)
+     })
+   ).subscribe()
   }
 
   async logout(){
