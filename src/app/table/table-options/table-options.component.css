@@ -29,6 +29,14 @@
 .flex-item {
     display: flex;
     width: 120px;
+    justify-content: left;
+    align-items: center;
+    
+  }
+
+  .flex-item-last {
+    display: flex;
+    width: 120px;
     justify-content: center;
     align-items: center;
     
