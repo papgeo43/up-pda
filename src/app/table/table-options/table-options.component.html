@@ -1,5 +1,5 @@
 <h2 mat-dialog-title style="text-align: center; color: #3F51B5;">Table: {{data.id}}</h2>
-<mat-dialog-content>
+<mat-dialog-content style="max-height: 47vh;">
     <mat-form-field class="dropdown" appearance="fill">
         <mat-label>Παραγγελία</mat-label>
         <mat-select (selectionChange)="changeClient($event.value)" #matRef>
