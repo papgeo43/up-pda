@@ -51,6 +51,7 @@ export class TableOptionsComponent implements OnInit {
           this.calculateTotal();
           this.passTotalToParent()
         }
+       
       })
     ).subscribe();
   }
@@ -70,6 +71,7 @@ export class TableOptionsComponent implements OnInit {
   saveOrder() {
     if (this.changeOption) {
       if (this.hasDataFromRequest) {
+        this.http.put(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-C${this.data.id}.json`, this.selectedItems).subscribe()
         this.http.put(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.data.id}.json`, this.selectedItems)
          .subscribe( result => {
           // success
@@ -81,6 +83,7 @@ export class TableOptionsComponent implements OnInit {
           this.showNotification(notification.error, notification.closeAction, notification.backgroundError);
         })
       } else {
+        this.http.post(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-C${this.data.id}.json`, this.selectedItems).subscribe()
         this.http.post(`https://upsmoke-fd707-default-rtdb.europe-west1.firebasedatabase.app/table-${this.data.id}.json`, this.selectedItems).subscribe( result => {
           // success
           this.showNotification(notification.success, notification.closeAction, notification.backgroundSuccess);

@@ -15,6 +15,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component'
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { TotalTableComponent } from './table/table-options/total-table/total-table.component';
 
 
 const firebaseConfig = {
@@ -34,7 +35,8 @@ const firebaseConfig = {
     AppComponent,
     TableComponent,
     TableOptionsComponent,
-    LoginComponent
+    LoginComponent,
+    TotalTableComponent
   ],
   imports: [
     BrowserModule,

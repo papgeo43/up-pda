@@ -9,5 +9,6 @@
   <div class="container">  
     
     <app-table *ngFor="let table of tables" [table]="table"></app-table>
+    <button [ngStyle]="{position: 'absolute', bottom: '10px', right: '10px'}" mat-raised-button color="warn" (click)="dialogRef()">Total</button>
   </div>
 </ng-template>

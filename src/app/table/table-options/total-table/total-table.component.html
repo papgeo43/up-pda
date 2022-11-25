@@ -1,0 +1,5 @@
+<ng-container *ngFor="let item of totalItems">
+    <h4 *ngFor="let it of item">  {{it.item}} x {{it.itemQuantity}} - {{it.price}}€</h4>
+</ng-container>
+<h2>Total: {{calc$ | async}}€</h2>
+<button mat-raised-button color="warn" (click)="payAll()">Εξοφληση</button>
